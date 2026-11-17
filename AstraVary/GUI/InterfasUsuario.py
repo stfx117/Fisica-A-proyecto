@@ -1,5 +1,6 @@
 import vpython as vp
 '''
+La clase InterfasUsuario es la encargada de poder interactuar directamente con el usuario
 '''
 class InterfasUsuario:
     #Constructor
