@@ -2,7 +2,7 @@ import vpython as vp
 '''
 La clase InterfasUsuario es la encargada de poder interactuar directamente con el usuario
 '''
-class InterfasUsuario:
+class InterfazUsuario:
     #Constructor
     def __init__(self,ventana, sliderMasa, botones, mostrarVectores, mostrarOrbitas):
         self.ventana = ventana
