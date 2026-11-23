@@ -21,7 +21,7 @@ class Astro:
         self.radio = RADIO_MIN
         self.brillo = False
         self.luz = None
-        self.objetoVisual = vp.sphere(pos=posicion, radius=self.radio, color=color, make_trail=False)
+        self.objetoVisual = vp.sphere(pos=posicion, radius=self.radio, color=color, make_trail=False, retain=500, trail_radius=0.02)
         
         self.modificar_masa
         
@@ -36,7 +36,16 @@ class Astro:
         #actualisa la posicion de la luz
         if self.luz is not None:
             self.luz.pos = self.posicion
-        
+            
+    def eliminar_visual(self):
+        """_summary_
+        """
+        self.objetoVisual.clear_trail()
+        self.objetoVisual.visible = False
+        if self.luz is not None:
+            self.luz.visible = False
+            self.luz = None
+    
     def modificar_masa(self, nueva_masa):
         """_summary_
 
