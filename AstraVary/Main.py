@@ -13,7 +13,7 @@ from ModeloFisicoMatematico.Astro import Astro
 from ModeloFisicoMatematico.CalculadorFisico import CalculadorFisico
 from ModeloFisicoMatematico.GraficadorOrbital import GraficadorOrbital
 from ModeloFisicoMatematico.SistemaEstelar import SistemaEstelar
-from GUI.InterfasUsuario import InterfasUsuario
+from GUI.InterfazUsuario import InterfasUsuario
 
 
 G_FISICA = 6.67430e-11
