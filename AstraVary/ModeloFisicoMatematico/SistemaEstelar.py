@@ -15,24 +15,27 @@ class SistemaEstelar:
         self.graficador = graficador
     #Metodos
     def agregar_astro(self, astro):
-        """_summary_
+        """
+        Agrega un objeto de la clase astro a la lista de oastros e el sistema
 
         Args:
-            Astro (_type_): _description_
+            astro (Astro): una instancia de la clase astro
         """
         self.astros.append(astro)
         
     def actualizar_simulacion(self):
-        """_summary_
+        """
+        Actualiza el movimiento, las graficas y la representacion visual de los astros dentor de la simulacion
         """
         self.calculador.actualizar_movimiento(self.astros)
-        self.tiempoActual += self.calculador.dt
+        self.tiempoActual += self.calculador.dt     #avansa dt unidades de tiempo
         for astro in self.astros:
             astro.actualizar_visual()
         self.graficador.actualizar_graficas(self.astros, self.tiempoActual)
     
     def reiniciar_sistema(self):
-        """_summary_
+        """
+        Vuelve al estado original de la simulacion
         """
         for astro in self.astros:
             astro.eliminar_visual()
@@ -41,11 +44,12 @@ class SistemaEstelar:
         self.graficador.limpiar_graficas()
     
     def cambiar_masa_astro(self, indice, nueva_masa):
-        """_summary_
-
+        """
+        Cambia la masa del astro
+        
         Args:
-            indice (_type_): _description_
-            nueva_masa (_type_): _description_
+            indice (int): posicion del astro dentro de la lista
+            nueva_masa (float): masa nueva del astro
         """
         self.astros[indice].modificar_masa(nueva_masa)
     

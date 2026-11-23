@@ -27,7 +27,8 @@ class Astro:
         
     #Metodos
     def actualizar_visual(self):
-        """_summary_
+        """
+        Actualiza el objeto visual que representa la instancia de un astro
         """
         #se actualizan los valores para actualisar el visual
         self.objetoVisual.pos = self.posicion
@@ -38,7 +39,8 @@ class Astro:
             self.luz.pos = self.posicion
             
     def eliminar_visual(self):
-        """_summary_
+        """
+        Elimina el objeto visual que representa la instancia del astro
         """
         self.objetoVisual.clear_trail()
         self.objetoVisual.visible = False
@@ -47,10 +49,11 @@ class Astro:
             self.luz = None
     
     def modificar_masa(self, nueva_masa):
-        """_summary_
+        """
+        Cambia la masa del astro por una nueva masa
 
         Args:
-            nueva_masa (_type_): _description_
+            nueva_masa (float): nueva masa del astro
         """
         self.masa = nueva_masa
         #se crea un objeto local_ligth

@@ -12,7 +12,12 @@ class GraficadorOrbital:
 
     #Metodos
     def inicializar_curvas(self, astros):
-        """Crea una curva para cada astro, conservando su color."""
+        """
+        Crea una curva para cada astro, conservando su color.
+        
+        Args:
+            astros(List):lista con los astros de la simulacion
+        """
         #Evita acumular las curvas de una simulacion anterior.
         self.limpiar_graficas()
 
@@ -33,7 +38,13 @@ class GraficadorOrbital:
             self.curvas.append(curva)
 
     def actualizar_graficas(self, astros, tiempoActual):
-        """Agrega a cada curva la distancia del astro al origen."""
+        """
+        Agrega a cada curva la distancia del astro al origen.
+        
+        Args:
+            astros(List): lista con los astros de la simulacion
+            tiempoActual(float): momento especifico de la simulacion
+        """
         if self.curvas is None or len(self.curvas) != len(astros):
             raise ValueError(
                 "Inicializa las curvas con inicializar_curvas(astros) "
@@ -48,7 +59,9 @@ class GraficadorOrbital:
             curva.plot(tiempoActual, distancia)
 
     def limpiar_graficas(self):
-        """Elimina las curvas, sin borrar la ventana grafica."""
+        """
+        Elimina las curvas, sin borrar la ventana grafica.
+        """
         if self.curvas is None:
             self.curvas = []
             return
