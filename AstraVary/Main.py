@@ -13,7 +13,7 @@ from ModeloFisicoMatematico.Astro import Astro
 from ModeloFisicoMatematico.CalculadorFisico import CalculadorFisico
 from ModeloFisicoMatematico.GraficadorOrbital import GraficadorOrbital
 from ModeloFisicoMatematico.SistemaEstelar import SistemaEstelar
-from GUI.InterfasUsuario import InterfasUsuario
+from GUI.InterfazUsuario import InterfasUsuario
 
 
 G_FISICA = 6.67430e-11
@@ -27,7 +27,7 @@ PASO_TIEMPO = 1e8 / ESCALA_TIEMPO
 SUAVIZADO = 1e-2 / ESCALA_LONGITUD
 RADIO_ORBITAL = 8e7 / ESCALA_LONGITUD
 COLORES_INICIALES = [vp.color.yellow, vp.color.cyan, vp.color.magenta]
-MOSTRAR_TABLA_MAGNITUDES = False
+MOSTRAR_TABLA_MAGNITUDES = True
 ANCHO_CONTROLES = 360
 ANCHO_VISUALIZACION = 720
 ALTO_VISUALIZACION = 600
@@ -113,7 +113,6 @@ def crear_sistema():
             )
         graficador.inicializar_curvas(sistema.astros)
 
-    restablecer_modelo()
     interfaz = InterfasUsuario(
         ventana=panel,
         sistema=sistema,
@@ -130,6 +129,7 @@ def crear_sistema():
         mostrar_tabla=MOSTRAR_TABLA_MAGNITUDES,
     )
     interfaz.crear_menu_inicial()
+    restablecer_modelo()
     interfaz.crear_controles_simulacion()
     return escena, sistema, interfaz
 

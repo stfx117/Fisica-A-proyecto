@@ -139,6 +139,8 @@ class InterfasUsuario:
             "PARAMETROS DEL MODELO</div>"
             "<div style='padding:3px 8px; color:#1e3a5f; "
             "font:600 13px sans-serif;'>Masas de los cuerpos</div>"
+            f"<div style='padding:0 8px; color:#475569; font:10px sans-serif;'>"
+            f"Escala: 1 uM = {self.escala_masa:.2e} kg</div>"
         )
         for indice, astro in enumerate(self.sistema.astros):
             self._crear_control_masa(indice, astro)
@@ -193,8 +195,9 @@ class InterfasUsuario:
         etiqueta = vp.wtext(
             text=(
                 f"<br><b style='color:#1e3a5f;'>Cuerpo {indice + 1}</b>"
-                f"<span style='color:#0369a1;'>"
-                f" &nbsp; {astro.masa / self.escala_masa:.2f} uM</span><br>"
+                f"<br><span style='color:#0369a1;'>"
+                f"{astro.masa:.2e} kg "
+                f"({astro.masa / self.escala_masa:.2f} uM)</span><br>"
             ),
             pos=self.ventana.title_anchor,
         )
@@ -210,7 +213,8 @@ class InterfasUsuario:
         )
         self.ventana.append_to_title(
             "<br><span style='color:#475569; font:10px sans-serif;'>"
-            "Rango 0.10 - 8.00 uM</span></div>"
+            "Rango: 1.00e+11 - 8.00e+12 kg "
+            "(0.10 - 8.00 uM)</span></div>"
         )
         self.etiquetas_masa.append(etiqueta)
         self.masa_sliders.append(slider)
@@ -221,8 +225,9 @@ class InterfasUsuario:
         self.sistema.cambiar_masa_astro(indice, slider.value)
         self.etiquetas_masa[indice].text = (
             f"<br><b style='color:#1e3a5f;'>Cuerpo {indice + 1}</b>"
-            f"<span style='color:#0369a1;'>"
-            f" &nbsp; {slider.value / self.escala_masa:.2f} uM</span><br>"
+            f"<br><span style='color:#0369a1;'>"
+            f"{slider.value:.2e} kg "
+            f"({slider.value / self.escala_masa:.2f} uM)</span><br>"
         )
         self.actualizar_tabla_medidas(forzar=True)
 
@@ -242,10 +247,10 @@ class InterfasUsuario:
             rapidez_real = vp.mag(astro.velocidad) * factor_velocidad
             tarjetas.append(
                 "<td style='width:33.33%; padding:5px; vertical-align:top;'>"
-                "<div style='padding:9px 11px; background:#172033; "
-                "border:1px solid #334155; border-radius:8px;'>"
-                f"<div style='padding-bottom:5px; color:#7dd3fc; "
-                f"font-weight:700; border-bottom:1px solid #334155;'>"
+                "<div style='padding:9px 11px; background:#ffffff; "
+                "border:1px solid #bfdbfe; border-radius:8px;'>"
+                f"<div style='padding-bottom:5px; color:#0369a1; "
+                f"font-weight:700; border-bottom:1px solid #dbeafe;'>"
                 f"ASTRO {indice}</div>"
                 "<div style='padding-top:5px;'>"
                 f"Masa: {astro.masa / self.escala_masa:.2f} uM "
@@ -273,31 +278,31 @@ class InterfasUsuario:
         )
         self.tabla_medidas.text = (
             "<div style='margin:4px 12px 10px; padding:8px; "
-            "background:#111827; border:1px solid #334155; "
-            "border-radius:9px; font:11px/1.5 sans-serif; color:#cbd5e1;'>"
+            "background:#e8f2ff; border:1px solid #93c5fd; "
+            "border-radius:9px; font:11px/1.5 sans-serif; color:#1e293b;'>"
             "<table style='width:100%; border-collapse:collapse; "
             "table-layout:fixed;'><tr>"
             "<td style='width:33.33%; padding:5px 10px; "
-            "border-right:1px solid #334155;'>"
-            "<span style='color:#7dd3fc; font-weight:700;'>ESCALAS</span><br>"
+            "border-right:1px solid #bfdbfe;'>"
+            "<span style='color:#0369a1; font-weight:700;'>ESCALAS</span><br>"
             f"1 uL = {self.escala_longitud:.2e} m<br>"
             f"1 uT = {self.escala_tiempo:.2e} s<br>"
             f"1 uM = {self.escala_masa:.2e} kg</td>"
             "<td style='width:33.33%; padding:5px 10px; "
-            "border-right:1px solid #334155;'>"
-            "<span style='color:#7dd3fc; font-weight:700;'>GRAVEDAD</span><br>"
+            "border-right:1px solid #bfdbfe;'>"
+            "<span style='color:#0369a1; font-weight:700;'>GRAVEDAD</span><br>"
             f"G fisica = {self.G_fisica:.3e} m^3/(kg s^2)<br>"
             f"G modelo = {g_modelo:.3e} uL^3/(kg uT^2)<br>"
             f"G normalizada = {g_modelo * self.escala_masa:.3f} "
             "uL^3/(uM uT^2)</td>"
             "<td style='width:33.33%; padding:5px 10px;'>"
-            "<span style='color:#7dd3fc; font-weight:700;'>TIEMPO</span><br>"
+            "<span style='color:#0369a1; font-weight:700;'>TIEMPO</span><br>"
             f"dt = {self.sistema.calculador.dt:.4f} uT "
             f"({dt_real:.2e} s)<br>"
             f"Actual = {self.sistema.tiempoActual:.4f} uT "
             f"({tiempo_real:.2e} s)</td>"
             "</tr></table><hr style='border:0; "
-            "border-top:1px solid #334155;'>"
+            "border-top:1px solid #bfdbfe;'>"
             "<table style='width:100%; border-collapse:collapse; "
             "table-layout:fixed;'><tbody>"
             f"{''.join(filas_tarjetas)}</tbody></table></div>"
@@ -328,8 +333,9 @@ class InterfasUsuario:
             slider.value = astro.masa
             etiqueta.text = (
                 f"<br><b style='color:#1e3a5f;'>Cuerpo {indice + 1}</b>"
-                f"<span style='color:#0369a1;'>"
-                f" &nbsp; {astro.masa / self.escala_masa:.2f} uM</span><br>"
+                f"<br><span style='color:#0369a1;'>"
+                f"{astro.masa:.2e} kg "
+                f"({astro.masa / self.escala_masa:.2f} uM)</span><br>"
             )
         self.actualizar_tabla_medidas(forzar=True)
 
